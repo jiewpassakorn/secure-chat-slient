@@ -23,7 +23,7 @@ import CryptoJS from "crypto-js";
 const ENDPOINT = "https://secure-chat-slient-production.up.railway.app";
 let socket;
 let selectedChatCompare;
-const PATH=import.meta.env.PATH
+
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -47,9 +47,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       };
 
       setLoading(true);
-      
+
       const { data } = await axios.get(
-        `https://secure-chat-slient-production.up.railway.app/api/message/${selectedChat._id}`,
+        `${ENDPOINT}/api/message/${selectedChat._id}`,
         config
       );
 
@@ -155,7 +155,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
         setNewMessage("");
         const { data } = await axios.post(
-          "https://secure-chat-slient-production.up.railway.app/api/message",
+          `${ENDPOINT}/api/message`,
           {
             content: encryptedMessage,
             chatId: selectedChat._id,
@@ -250,41 +250,67 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           <Box
             display="flex"
             flexDir="column"
-            justifyContent="flex-end"
-            p={3}
-            bg="#E8E8E8"
-            w="100%"
+            justifyContent="space-between"
             h="100%"
-            borderRadius="lg"
-            overflowY="hidden"
           >
-            {loading ? (
-              <Spinner size="xl" w={20} h={20} alignSelf="center" margin="auto" />
-            ) : (
-              <div className="messages">
-                {/* Messages */}
-                <ScrollableChat messages={messages} />
-              </div>
+            <ScrollableChat
+              loading={loading}
+              messages={messages}
+              user={user}
+              socket={socket}
+              selectedChat={selectedChat}
+              fetchAgain={fetchAgain}
+              setFetchAgain={setFetchAgain}
+            />
+
+            {isTyping && (
+              <Box
+                mt={1}
+                px={2}
+                py={1}
+                fontSize="14px"
+                display="flex"
+                alignItems="center"
+              >
+                <Spinner size="xs" color="gray.500" mr={2} />
+                <Text color="gray.500">Typing...</Text>
+              </Box>
             )}
 
-            <FormControl onKeyDown={sendMessage} isRequired mt={3}>
-              {isTyping ? <div style={{ color: "grey" }}>Typing...</div> : <></>}
+            <FormControl id="message" isRequired>
               <Input
-                variant="filled"
-                bg="#E0E0E0"
-                placeholder="Enter a message.."
-                autoComplete="off"
-                onChange={typingHandler}
+                type="text"
+                placeholder="Type a message"
                 value={newMessage}
+                onChange={typingHandler}
+                onKeyPress={sendMessage}
+                autoComplete="off"
+                mb={2}
               />
             </FormControl>
           </Box>
         </>
       ) : (
-        <Box display="flex" alignItems="center" justifyContent="center" h="100%">
-          <Text fontSize="3xl" pb={3} fontFamily="Work sans">
-            Click on a user to start chatting
+        <Box
+          display="flex"
+          flexDir="column"
+          justifyContent="center"
+          alignItems="center"
+          height="100%"
+          fontFamily="Work sans"
+        >
+          <Text
+            fontSize={{ base: "28px", md: "30px" }}
+            py={3}
+            w="100%"
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            Chat App
+            <ProfileModal user={user} />
           </Text>
+          <Text fontSize="20px">Select a Chat to start messaging</Text>
         </Box>
       )}
     </>

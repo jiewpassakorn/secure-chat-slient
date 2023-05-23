@@ -20,7 +20,7 @@ app.use(express.json()); // to accept JSON Data
 
 const corsOptions = {
   origin: [
-    "https://646d348fdf56e80fbf64b4e9--stately-mooncake-c0e98f.netlify.app" // Add the URL of your Netlify app
+    "https://646d3bfe6f70a415f43bdf36--unique-parfait-d60d48.netlify.app" // Add the URL of your Netlify app
   ],
 };
 
@@ -57,7 +57,7 @@ const server = app.listen(
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://646d348fdf56e80fbf64b4e9--stately-mooncake-c0e98f.netlify.app", // for react dev http://localhost:3000
+    origin: "https://646d3bfe6f70a415f43bdf36--unique-parfait-d60d48.netlify.app", // for react dev http://localhost:3000
   },
 });
 
