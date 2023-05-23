@@ -20,7 +20,7 @@ import ScrollableChat from "./ScrollableChat";
 import { io } from "socket.io-client";
 import CryptoJS from "crypto-js";
 
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "https://backend-btlz.onrender.com/";
 let socket;
 let selectedChatCompare;
 
