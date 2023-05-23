@@ -20,8 +20,7 @@ app.use(express.json()); // to accept JSON Data
 
 const corsOptions = {
   origin: [
-    "http://localhost:5173", // Allow requests from localhost during development
-    "https://glowing-macaron-ccddf0.netlify.app", // Add the URL of your Netlify app
+"https://glowing-macaron-ccddf0.netlify.app" // Add the URL of your Netlify app
   ],
 };
 
@@ -58,7 +57,7 @@ const server = app.listen(
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http://localhost:5173", // for react dev http://localhost:3000
+    origin: "https://glowing-macaron-ccddf0.netlify.app", // for react dev http://localhost:3000
   },
 });
 
