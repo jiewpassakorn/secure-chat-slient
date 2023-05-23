@@ -43,6 +43,16 @@ app.use(
   proxy("http://localhost:5000") // URL of your server
 );
 
+const corsOptions = {
+  origin: [
+    "http://localhost:5173", // Allow requests from localhost during development
+    "https://glowing-macaron-ccddf0.netlify.app", // Add the URL of your Netlify app
+  ],
+};
+
+app.use(cors(corsOptions));
+
+
 const server = app.listen(
   PORT,
   console.log(`Server Start on PORT ${PORT}`.yellow.bold)
