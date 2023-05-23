@@ -250,67 +250,41 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           <Box
             display="flex"
             flexDir="column"
-            justifyContent="space-between"
+            justifyContent="flex-end"
+            p={3}
+            bg="#E8E8E8"
+            w="100%"
             h="100%"
+            borderRadius="lg"
+            overflowY="hidden"
           >
-            <ScrollableChat
-              loading={loading}
-              messages={messages}
-              user={user}
-              socket={socket}
-              selectedChat={selectedChat}
-              fetchAgain={fetchAgain}
-              setFetchAgain={setFetchAgain}
-            />
-
-            {isTyping && (
-              <Box
-                mt={1}
-                px={2}
-                py={1}
-                fontSize="14px"
-                display="flex"
-                alignItems="center"
-              >
-                <Spinner size="xs" color="gray.500" mr={2} />
-                <Text color="gray.500">Typing...</Text>
-              </Box>
+            {loading ? (
+              <Spinner size="xl" w={20} h={20} alignSelf="center" margin="auto" />
+            ) : (
+              <div className="messages">
+                {/* Messages */}
+                <ScrollableChat messages={messages} />
+              </div>
             )}
 
-            <FormControl id="message" isRequired>
+            <FormControl onKeyDown={sendMessage} isRequired mt={3}>
+              {isTyping ? <div style={{ color: "grey" }}>Typing...</div> : <></>}
               <Input
-                type="text"
-                placeholder="Type a message"
-                value={newMessage}
-                onChange={typingHandler}
-                onKeyPress={sendMessage}
+                variant="filled"
+                bg="#E0E0E0"
+                placeholder="Enter a message.."
                 autoComplete="off"
-                mb={2}
+                onChange={typingHandler}
+                value={newMessage}
               />
             </FormControl>
           </Box>
         </>
       ) : (
-        <Box
-          display="flex"
-          flexDir="column"
-          justifyContent="center"
-          alignItems="center"
-          height="100%"
-          fontFamily="Work sans"
-        >
-          <Text
-            fontSize={{ base: "28px", md: "30px" }}
-            py={3}
-            w="100%"
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            Chat App
-            <ProfileModal user={user} />
+        <Box display="flex" alignItems="center" justifyContent="center" h="100%">
+          <Text fontSize="3xl" pb={3} fontFamily="Work sans">
+            Click on a user to start chatting
           </Text>
-          <Text fontSize="20px">Select a Chat to start messaging</Text>
         </Box>
       )}
     </>
