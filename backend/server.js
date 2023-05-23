@@ -24,8 +24,8 @@ app.get("/", (req, res) => {
 });
 
 
-app.get('*',(req,res) =>{
-  res.sendFile(path.join(__dirname,'../frontend/src/Pages/ChatPage.jsx'));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
 app.use("/api/user", userRoutes);
