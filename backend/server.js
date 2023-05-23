@@ -8,8 +8,12 @@ const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 const proxy = require("express-http-proxy");
-dotenv.config();
+const cors = require('cors')
 
+
+
+dotenv.config();
+app.use(cors());
 connectDB();
 const app = express();
 
