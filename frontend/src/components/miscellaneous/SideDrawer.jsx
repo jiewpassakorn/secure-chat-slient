@@ -191,22 +191,24 @@ const SideDrawer = () => {
               />
             </MenuButton>
             <MenuList>
-              <MenuItem
-                borderRadius="lg"
-                borderWidth="1px"
-                w="96%"
-                ml={1}
-                mb={2}
-                shadow="md">
-                <Avatar
-                  size="sm"
-                  cursor="pointer"
-                  mr={2}
-                  name={user.name}
-                  src={user.pic}
-                />
-                <Text fontWeight="semibold">{user.name}</Text>
-              </MenuItem>
+              <ProfileModal user={user}>
+                <MenuItem
+                  borderRadius="lg"
+                  borderWidth="1px"
+                  w="96%"
+                  ml={1}
+                  mb={2}
+                  shadow="md">
+                  <Avatar
+                    size="sm"
+                    cursor="pointer"
+                    mr={2}
+                    name={user.name}
+                    src={user.pic}
+                  />
+                  <Text fontWeight="semibold">{user.name}</Text>
+                </MenuItem>
+              </ProfileModal>
               <ProfileModal user={user}>
                 <MenuItem>
                   <Icon as={CgProfile} mr={2} boxSize={6} />
