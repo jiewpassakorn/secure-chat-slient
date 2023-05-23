@@ -34,14 +34,19 @@ cd frontend
 npm i
 ```
 
-Then set up your environment by create `.env` file and configure this following variable
+Then set up your environment by create `.env` file and configure this following variable <br/>
+**At root folder:**
 
 - **PORT** add your server port.
 - **MONGO_URI** add your connection string into your application code
 - **DB_NAME** add your database name
 - **JWT_SECRET** add your secret json web token it can be anything
 
-## to start the server
+**At frontend folder:**
+
+- **VITE_SECRET_KEY** add your secret key for encrpytion.
+
+## To start the server
 
 run server by nodemon and use mongoDB as a database
 
@@ -50,7 +55,7 @@ run server by nodemon and use mongoDB as a database
 npm start
 ```
 
-## to start frontend
+## To start frontend
 
 This project created by using vite as a frontend framework. Vite is tools for create react project
 
