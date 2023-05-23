@@ -49,7 +49,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       setLoading(true);
       
       const { data } = await axios.get(
-        `https://secure-chat-slient-production.up.railway.app/api/message/${selectedChat._id}`,
+        `/api/message/${selectedChat._id}`,
         config
       );
 
@@ -155,7 +155,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
         setNewMessage("");
         const { data } = await axios.post(
-          "https://secure-chat-slient-production.up.railway.app/api/message",
+          "/api/message",
           {
             content: encryptedMessage,
             chatId: selectedChat._id,

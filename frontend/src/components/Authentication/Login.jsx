@@ -44,7 +44,7 @@ const Login = () => {
       };
 
       const { data } = await axios.post(
-        "https://secure-chat-slient-production.up.railway.app/api/user/login",
+        "/api/user/login",
         { email, password },
         config
       );
