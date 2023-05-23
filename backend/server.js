@@ -12,9 +12,7 @@ dotenv.config();
 
 connectDB();
 const app = express();
-app.use(cors({
-  origin: "https://646cf239e31b98000959de79--mellifluous-meerkat-c576c7.netlify.app"
-}));
+
 app.use(express.json()); // to accept JSON Data
 
 app.get("/", (req, res) => {
@@ -45,7 +43,7 @@ const server = app.listen(
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://646cf239e31b98000959de79--mellifluous-meerkat-c576c7.netlify.app/", // for react dev http://localhost:3000
+    origin: "http://localhost:5173", // for react dev http://localhost:3000
   },
 });
 
