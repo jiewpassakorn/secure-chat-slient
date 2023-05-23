@@ -25,8 +25,8 @@ app.get("/", (req, res) => {
 
 app.use(express.static(path.join(__dirname, "frontend", "dist"))); // Serve static files from the "build" directory
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html")); // Send the main HTML file for any route
+app.get('*',(req,res) =>{
+  res.sendFile(path.join(__dirname,'../frontend/src/Pages/ChatPage.jsx'));
 });
 
 app.use("/api/user", userRoutes);
