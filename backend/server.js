@@ -13,12 +13,12 @@ const cors = require('cors')
 
 
 dotenv.config();
-app.use(cors());
+
 connectDB();
 const app = express();
 
 app.use(express.json()); // to accept JSON Data
-
+app.use(cors());
 app.get("/", (req, res) => {
   res.send("API is Running Successfully");
 });
