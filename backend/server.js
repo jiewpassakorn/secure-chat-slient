@@ -30,7 +30,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   "/api", // Path to proxy
-  proxy("https://backend-btlz.onrender.com") // URL of your server
+  proxy("http://localhost:5000") // URL of your server
 );
 
 const server = app.listen(
@@ -43,7 +43,7 @@ const server = app.listen(
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://646cf239e31b98000959de79--mellifluous-meerkat-c576c7.netlify.app/", // for react dev http://localhost:3000
+    origin: "http://localhost:5173", // for react dev http://localhost:3000
   },
 });
 
