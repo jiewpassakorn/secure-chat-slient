@@ -102,7 +102,7 @@ const Signup = () => {
       };
 
       const { data } = await axios.post(
-        "/api/user",
+        "https://secure-chat-slient-production.up.railway.app/api/user",
         { name, email, password, pic },
         config
       );
