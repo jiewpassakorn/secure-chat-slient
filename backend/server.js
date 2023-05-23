@@ -23,7 +23,6 @@ app.get("/", (req, res) => {
   res.send("API is Running Successfully");
 });
 
-app.use(express.static(path.join(__dirname, "frontend", "dist"))); // Serve static files from the "build" directory
 
 app.get('*',(req,res) =>{
   res.sendFile(path.join(__dirname,'../frontend/src/Pages/ChatPage.jsx'));
