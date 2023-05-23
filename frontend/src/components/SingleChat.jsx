@@ -20,10 +20,10 @@ import ScrollableChat from "./ScrollableChat";
 import { io } from "socket.io-client";
 import CryptoJS from "crypto-js";
 
-const ENDPOINT = "https://secure-chat-slient-production.up.railway.app/";
+const ENDPOINT = "https://secure-chat-slient-production.up.railway.app";
 let socket;
 let selectedChatCompare;
-
+const PATH=import.meta.env.PATH
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -47,9 +47,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       };
 
       setLoading(true);
-
+      
       const { data } = await axios.get(
-        `/api/message/${selectedChat._id}`,
+        `https://secure-chat-slient-production.up.railway.app/api/message/${selectedChat._id}`,
         config
       );
 
@@ -155,7 +155,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
         setNewMessage("");
         const { data } = await axios.post(
-          "/api/message",
+          "https://secure-chat-slient-production.up.railway.app/api/message",
           {
             content: encryptedMessage,
             chatId: selectedChat._id,
