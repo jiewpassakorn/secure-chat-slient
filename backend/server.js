@@ -32,11 +32,7 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-const corsOptions = {
-  origin: 'https://glowing-macaron-ccddf0.netlify.app/chats',
-  credentials: true,
-};
-app.use(cors(corsOptions));
+
 
 app.use(
   "/api", // Path to proxy
