@@ -9,8 +9,7 @@ const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 const proxy = require("express-http-proxy");
 const cors = require('cors')
-
-
+const path = require("path");
 
 dotenv.config();
 
@@ -18,7 +17,16 @@ connectDB();
 const app = express();
 
 app.use(express.json()); // to accept JSON Data
-app.use(cors());
+
+const corsOptions = {
+  origin: [
+    "http://localhost:5173", // Allow requests from localhost during development
+    "https://glowing-macaron-ccddf0.netlify.app", // Add the URL of your Netlify app
+  ],
+};
+
+app.use(cors(corsOptions));
+
 app.get("/", (req, res) => {
   res.send("API is Running Successfully");
 });
@@ -37,28 +45,15 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
 });
 
-
 app.use(
   "/api", // Path to proxy
   proxy("http://localhost:5000") // URL of your server
 );
 
-const corsOptions = {
-  origin: [
-    "http://localhost:5173", // Allow requests from localhost during development
-    "https://glowing-macaron-ccddf0.netlify.app", // Add the URL of your Netlify app
-  ],
-};
-
-app.use(cors(corsOptions));
-
-
 const server = app.listen(
   PORT,
   console.log(`Server Start on PORT ${PORT}`.yellow.bold)
 );
-
-
 
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
@@ -86,7 +81,7 @@ io.on("connection", (socket) => {
 
   socket.on("new message", (newMessageReceived) => {
     var chat = newMessageReceived.chat;
-    
+
     if (!chat.users) return console.log("chat.users not defined");
 
     chat.users.forEach((user) => {
