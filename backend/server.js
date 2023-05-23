@@ -46,7 +46,7 @@ app.get("*", (req, res) => {
 
 app.use(
   "/api", // Path to proxy
-  proxy("http://localhost:5000") // URL of your server
+  proxy("secure-chat-slient-production-1ae3.up.railway.app:5000") // URL of your server
 );
 
 const server = app.listen(

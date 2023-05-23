@@ -189,7 +189,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
         },
       };
 
-      const { data } = await axios.get(`https://secure-chat-slient-production.up.railway.app//chats/api/user?search=${search}`, config);
+      const { data } = await axios.get(`https://secure-chat-slient-production.up.railway.app/chats/api/user?search=${search}`, config);
       setLoading(false);
       setSearchResult(data);
     } catch (error) {
