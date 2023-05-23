@@ -30,7 +30,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   "/api", // Path to proxy
-  proxy("http://localhost:5000") // URL of your server
+  proxy("https://backend-btlz.onrender.com") // URL of your server
 );
 
 const server = app.listen(
