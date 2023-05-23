@@ -32,6 +32,10 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
+// Add catch-all route for React application
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
 
 
 app.use(
