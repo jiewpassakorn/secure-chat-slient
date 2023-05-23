@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://backend-btlz.onrender.com/",
+        target: "https://secure-chat-slient-production.up.railway.app/",
         changeOrigin: true,
         secure: false,
       },
