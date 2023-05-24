@@ -30,6 +30,14 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
+app.use(
+  "/api", // Path to proxy
+  proxy("https://secure-chat-slient-production.up.railway.app", {
+    proxyReqPathResolver: (req) =>
+      `/socket.io/?EIO=4&transport=polling&t=OXDCIfX`,
+  })
+);
+
 const server = app.listen(
   PORT,
   console.log(`Server Start on PORT ${PORT}`.yellow.bold)
