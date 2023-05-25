@@ -1,34 +1,30 @@
 # MERN SECURE CHAT
 
-This project is a secure chat app. It will secure your message while sending each other. This app can chat both one-on-one and group chat.
+This project is a secure chat app. It will secure your message while sending each other. This app can chat both one-on-one and group chat. Real-time messaging by using socket.io
 
-## dependencies
+## Technology Stack
 
-At Root folder
+### Client Application
 
-- bcrtpytjs
-- colors
-- dotenv
-- express
-- experss=async-handler
-- jsonwebtoken
-- mongoose
-- nodemon
-- socket.io
+1. ViteJS for UI
+2. Axios Library for handling AJAX calls
+3. WebSocket library for real-time message exchange
+4. CryptoJS for end-to-end encryption
+5. Chakra UI
 
-At frontend folder
+### Server Application
 
-- chakra-ui
-- axios
-- react-router-dom
-- socket.io-client
+1. NodeJS
+2. ExpressJS
+3. Mongoose for MongoDB integration
+
+---
 
 ## Set up project on your environment
 
 Install necessary dependencies of the project by
 
 ```
-// at root folder
 npm i
 cd frontend
 npm i
@@ -46,18 +42,15 @@ Then set up your environment by create `.env` file and configure this following 
 
 - **VITE_SECRET_KEY** add your secret key for encrpytion.
 
-## To start the server
+## Start Locally
 
-run server by nodemon and use mongoDB as a database
+Run server by nodemon and use mongoDB as a database
 
 ```
-// at root folder
 npm start
 ```
 
-## To start frontend
-
-This project created by using vite as a frontend framework. Vite is tools for create react project
+Run frontend. This project created by using vite as a frontend framework. Vite is tools for create react project
 
 ```
 cd frontend
