@@ -7,10 +7,10 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (!name || !email || !password) {
     res.status(400);
-    throw new Error("Please Enter all the Feilds");
+    throw new Error("Please Enter all the Fields");
   }
 
-  const userExists = await User.findOne({ email });
+  const userExists = await User.findOne({ email }).exec();
 
   if (userExists) {
     res.status(400);
@@ -41,9 +41,9 @@ const registerUser = asyncHandler(async (req, res) => {
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email }).exec();
 
-  if (user && (await user.matchPassword(password))) {
+  if (user && await user.matchPassword(password)) {
     res.json({
       _id: user._id,
       name: user.name,
@@ -62,15 +62,14 @@ const authUser = asyncHandler(async (req, res) => {
 const allUsers = asyncHandler(async (req, res) => {
   const keyword = req.query.search
     ? {
-        // check if there is any keywords and compare keyword to db
         $or: [
-          { name: { $regex: req.query.search, $options: "i" } },
-          { email: { $regex: req.query.search, $options: "i" } },
+          { name: { $regex: new RegExp(req.query.search, "i") } },
+          { email: { $regex: new RegExp(req.query.search, "i") } },
         ],
       }
     : {};
 
-  const users = await User.find(keyword).find({ _id: { $ne: req.user._id } });
+  const users = await User.find(keyword).ne("_id", req.user._id).exec();
   res.send(users);
 });
 
